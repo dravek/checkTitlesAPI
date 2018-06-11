@@ -9,9 +9,12 @@ Class CurlRequest{
 	private $title;
 
 	/**
+	*
 	* Get Title of website
 	*@param url
+	*
 	*/
+	
 	public function getTitle($url)
 	{
 		$client = new \GuzzleHttp\Client();
@@ -21,7 +24,7 @@ Class CurlRequest{
 	            'max'             => 10,        // allow at most 10 redirects.
 	            'strict'          => true,      // use "strict" RFC compliant redirects.
 	            'referer'         => true,      // add a Referer header
-	            'protocols'       => ['http','https'], // only allow https URLs
+	            'protocols'       => ['http','https'],
 	            'on_redirect'     => $onRedirect,
 	            'track_redirects' => true
 	        ],
@@ -42,18 +45,21 @@ Class CurlRequest{
 
 
 	/**
+	*
 	* Check if title contains the words 'news' or 'noticias'
+	*
 	*/
+
 	public function isMarfeelizable()
 	{
 		$marfeelizable = 'NO';
 
-        // We check if contains news or noticias in the <TITLE></TITLE> tag
-        if (strpos(strtoupper($this->title), 'NEWS') !== false || strpos(strtoupper($this->title), 'NOTICIAS') !== false) {
-            $marfeelizable = 'YES';
-        }
+	    // We check if contains news or noticias in the <TITLE></TITLE> tag
+	    if (strpos(strtoupper($this->title), 'NEWS') !== false || strpos(strtoupper($this->title), 'NOTICIAS') !== false) {
+	        $marfeelizable = 'YES';
+	    }
 
-        return $marfeelizable;
+	    return $marfeelizable;
 	}
 
 }
